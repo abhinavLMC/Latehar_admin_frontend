@@ -1,0 +1,82 @@
+[
+    {
+      "role_id": "1",
+      "slug": "admin",
+      "page_list": [
+        {
+            "label": "User Role and Permission",
+            "value": "user_role_and_permission"
+        },
+        {
+          "label": "Admin User",
+          "value": "admin_user"
+        },
+        {
+          "label": "Center Management",
+          "value": "center_management"
+        },
+        {
+          "label": "Center User",
+          "value": "center_user"
+        },
+        
+        {
+          "label": "Test Master",
+          "value": "test_master"
+        },
+        {
+          "label": "Package Management",
+          "value": "package_management"
+        },
+        {
+          "label": "Center Wise Package",
+          "value": "center_wise_package"
+        },
+        {
+          "label": "User Log History",
+          "value": "user_log_history"
+        },
+        {
+          "label": "Download Data",
+          "value": "download_data"
+        },
+        {
+          "label": "Doctor Management",
+          "value": "doctor_management"
+        }
+      ]
+    },
+    {
+      "role_id": "2",
+      "slug": "center",
+      "page_list": [
+        {
+            "label": "CET Management",
+            "value": "cet_management"
+        },
+        {
+          "label": "Driver Management",
+          "value": "driver_management"
+        },
+        {
+          "label": "Health Checkup",
+          "value": "health_checkup"
+        },
+        {
+            "label": "Health Report",
+            "value": "health_report"
+        }
+      ]
+    },
+    {
+        "role_id": "3",
+        "slug": "cet",
+        "page_list": [
+          {
+            "label": "Driver Management",
+            "value": "driver_management"
+          }
+        ]
+      }
+  ]
+  
