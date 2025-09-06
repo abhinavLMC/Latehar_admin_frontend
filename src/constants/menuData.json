@@ -4,12 +4,6 @@
     "title": "Request Management",
     "icon": "BarChartOutlined",
     "path": "/request-management"    
-  },
-  {
-    "key": "consultation-management",
-    "title": "Consultation Management",
-    "icon": "BarChartOutlined",
-    "path": "/consultation-management"    
   }
 
 ]
