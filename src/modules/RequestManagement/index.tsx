@@ -21,7 +21,8 @@ const RequestManagement: React.FC = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const url = `${ALL_API_OBJECT["get-requests"]}?status=${filterStatus}`; // ✅ Fetch requests by status
+      const url = `${ALL_API_OBJECT["consultation-list"]}?status=${filterStatus}`; // ✅ Fetch consultations by status
+      console.log("🚀 API CALL - Fetching from URL:", url);
   
       const response = await fetch(url, {
         method: "GET",
@@ -29,15 +30,17 @@ const RequestManagement: React.FC = () => {
       });
   
       if (!response.ok) {
-        throw new Error(`Failed to fetch requests: ${response.status}`);
+        throw new Error(`Failed to fetch consultations: ${response.status}`);
       }
   
       const result = await response.json();
+      console.log("📊 API RESPONSE - Raw data received:", result);
       result.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setData(result);
+      console.log("📊 API RESPONSE - Data set in state:", result);
     } catch (error) {
       console.error("Error fetching data:", error);
-      message.error("Failed to fetch requests. Please try again later.");
+      message.error("Failed to fetch consultations. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -48,13 +51,26 @@ const RequestManagement: React.FC = () => {
     fetchData(); // Use the API constant for fetching data
   }, [filterStatus]);
 
-  // Filter requests based on status
+  // Filter requests based on status and centerID
   const filteredRequests = data?.filter((request: any) => {
+    // First filter by centerID = 51
+    if (request.centerID !== 51) {
+      return false;
+    }
+    
+    // Then filter by status
     if (filterStatus === "rejected") {
       return request.deletedAt !== null; // ✅ Only show rejected requests
     }
     return filterStatus === "pending" ? !request.status : request.status;
   });
+
+  // Console log the filtered data for debugging
+  console.log("🔍 REQUEST MANAGEMENT DEBUG - Original data:", data);
+  console.log("🔍 REQUEST MANAGEMENT DEBUG - Filtered data (centerID = 51):", filteredRequests);
+  console.log("🔍 REQUEST MANAGEMENT DEBUG - Filter status:", filterStatus);
+  console.log("🔍 REQUEST MANAGEMENT DEBUG - Data length:", data?.length || 0);
+  console.log("🔍 REQUEST MANAGEMENT DEBUG - Filtered length:", filteredRequests?.length || 0);
 
   // Handle action button (book/reject)
   const ACTION_TYPES = ["book", "reject","ban","restore"] as const;
