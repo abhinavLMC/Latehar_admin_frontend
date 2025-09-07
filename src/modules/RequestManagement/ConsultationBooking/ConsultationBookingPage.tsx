@@ -29,10 +29,22 @@ interface HealthRecord {
 
 // Define Doctor Interface
 interface Doctor {
-  User?: {username?: string}; 
   id: number;
-  username: string;
+  external_id: string;
+  user_id: number;
+  registration_number: string;
   qualification: string;
+  signature: string;
+  contact_number: string;
+  file_name: string | null;
+  createdAt: string;
+  updatedAt: string;
+  User: {
+    id: number;
+    username: string;
+    status: boolean;
+    phone: string;
+  };
 }
 
 const ConsultationBookingPage: React.FC = () => {
@@ -65,7 +77,18 @@ const ConsultationBookingPage: React.FC = () => {
 
   // Fetch doctor list
   const { data: doctors, fetchData: fetchDoctors } = useGetRequestHandler();
-  const { submit, buttonLoading } = usePostRequestHandler(); // ✅ Use Post Request Handler
+  const { submit, buttonLoading } = usePostRequestHandler();
+
+  // Filter doctors to show only specific ones
+  const filteredDoctors = doctors?.filter((doctor: Doctor) => {
+    const doctorName = doctor.User?.username?.toLowerCase() || '';
+    return (
+      doctorName.includes('mahesh') ||
+      doctorName.includes('lokesh') ||
+      doctorName.includes('jay') ||
+      doctorName.includes('vikram')
+    );
+  }) || []; // ✅ Use Post Request Handler
   
 
   // Fetch request details to get centerID
@@ -263,7 +286,7 @@ const ConsultationBookingPage: React.FC = () => {
       <div style={{ marginTop: "20px" }}>
         <label>Select Doctor:</label>
             <Select style={{ width: "100%" }} placeholder="Select a doctor" value={selectedDoctor || undefined} onChange={(value) => setSelectedDoctor(value)}>
-      {doctors?.map((doctor: Doctor) => (
+      {filteredDoctors?.map((doctor: Doctor) => (
         <Option key={doctor.id} value={doctor.id}>
           {doctor.User ? `${doctor.User.username} - ${doctor.qualification}` : `Doctor ID: ${doctor.id}`}
         </Option>
