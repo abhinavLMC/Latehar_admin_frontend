@@ -5,6 +5,7 @@ import dayjs, { Dayjs } from "dayjs"; // ✅ Import Day.js
 import VitalsForm from "./VitalsForm"; // ✅ Include the vitals form
 import { ALL_API_OBJECT, MOBILE_API_BASE_URL } from "@constants/ApiConstant";
 import { useGetRequestHandler, usePostRequestHandler } from "src/hook/requestHandler"; // ✅ Use Request Handlers
+import { HOME_PAGE_ROUTE } from "@constants/AppConstant";
 
 const { Option } = Select;
 
@@ -235,7 +236,7 @@ const ConsultationBookingPage: React.FC = () => {
       if (!response.ok) throw new Error(isEditing ? "Failed to reschedule consultation." : "Failed to create consultation.");
       
       message.success(isEditing ? "Consultation Rescheduled!" : "Consultation Created!");
-      router.push("/consultation-management");
+      router.push(HOME_PAGE_ROUTE);
     } catch (error) {
       message.error("Error saving consultation.");
     } finally {

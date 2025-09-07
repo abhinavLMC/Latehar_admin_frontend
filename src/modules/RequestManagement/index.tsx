@@ -21,7 +21,7 @@ const RequestManagement: React.FC = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const url = `${ALL_API_OBJECT["consultation-list"]}?status=${filterStatus}`; // ✅ Fetch consultations by status
+      const url = `${ALL_API_OBJECT["get-requests"]}?status=${filterStatus}`; // ✅ Fetch consultations by status
       console.log("🚀 API CALL - Fetching from URL:", url);
   
       const response = await fetch(url, {
