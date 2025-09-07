@@ -120,12 +120,12 @@ const RequestManagement: React.FC = () => {
   // Table columns
   const columns = [
     {
-      title: "Driver Name",
+      title: "Patient Name",
       dataIndex: "driver_name",
       key: "driver_name",
     },
     {
-      title: "Driver Phone",
+      title: "Patient Phone",
       dataIndex: "contactNumber",
       key: "contactNumber",
     },
